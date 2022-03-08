@@ -92,21 +92,18 @@ tar xvzf 2.tar.gz && rm -r 2.tar.gz && chmod +x gotty && mv gotty $HOMEA/usr/bin
 fi
 
 oscur=$(head -n 1 $HOME/bin/state.txt);
-echo "${black}[Server thread/INFO]: Done! For help, Enter to web and type ip"
+echo "${black}Запускаю..."
 echo "${green}--------------"
-echo "${red}**| ${cyan}Open url: ${yellow}$SERVER_IP:$SERVER_PORT ${red}|**"
-echo "${yellow}**| ${cyan}If there is no ip. Get it from your server panel ${yellow}|**"
+echo "${red}**| ${cyan}Ссылка: ${yellow}$SERVER_IP:$SERVER_PORT ${red}|**"
+echo "${yellow}**| ${cyan}Если нету айпи,то скопируйте его который у вас есть ${yellow}|**"
 echo " "
-echo "${lightblue}(c) Russiam build Feb 17 by GGM"
-echo " "
-echo "${cyan}My VK -> (GOODGAMEMAGA) -->| ${yellow}(ORIG release) ${cyan}|<-- ${yellow}(NativeCodeMaker GameMaker) ${cyan}<-- MY YT CHANEL"
-echo "${cyan}ALL LINKS AND GUID + DOWNLOAD LINK ON THIS VIDEO (${yellow}17 FEB 2022)"
-echo "${cyan}https://www.youtube.com/watch?v=5aKDtzBtAr8 "
-echo "${cyan}My DS nopirateonlysteam#9956"
+echo "${cyan}HACKED by iser2"
+echo "${cyan}Мой дс по ддосу dsc.gg/mighty-attack"
+echo "${cyan}Мой ютуб канал foxker"
+echo "${cyan}Хорошего использования!"
 echo "${lightblue}$D"
 echo " "
-echo "${bold}${cyan}If you can't reach terminal in the web broser"
-echo "${bold}${cyan}try do delete all files except code.txt and server.jar"
+echo "${bold}${cyan}Если не получается перейти в веб терминал то удалите всё кроме: server.jar"
 echo "${green}--------------"
 echo " "
 cd $HOME
@@ -116,10 +113,10 @@ then
 fi
 if [ "$OS" = "Default" ];
 then
-      echo "${lightblue}OS not selected Using: ${yellow}Default container"
+      echo "${lightblue}OS Не выбрана использую: ${yellow}Default container"
       gotty -p $SERVER_PORT -w bash 
 else
-      echo "${lightblue}Selected OS: ${yellow}$OS"
+      echo "${lightblue}Выбрана OS: ${yellow}$OS"
       proot -S . supervisord -n &
       gotty -p $SERVER_PORT -w proot -S . /bin/bash
 fi
