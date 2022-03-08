@@ -19,15 +19,6 @@ purple='\033[0;35m'       # Purple
 cyan='\033[0;36m'         # Cyan
 white='\033[0;37m'        # White
 mkdir linux
-D="https://discord.com/invite/yahCmFYjKe"
-SYSINFO=$(uname -a)
-SID=$(uname -n)
-PID=$(echo $SID | sed 's/[^0-9]*//g')
-VERS=$(uname -r)
-SYSTEMSTAT=$VERS$SID$PID$VERS$SID$PID$PID$SID$VERS
-S1=$(echo $SYSTEMSTAT | sed 's/[^0-9]*//g')
-fi
-
 if ! [ -f $HOMEA/usr/bin/apth ];
 then
 echo 'РЈСЃС‚Р°РЅРѕРІРєР° apth | Устанавливаю apth'
