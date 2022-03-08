@@ -100,12 +100,10 @@ fi
 echo " "
 if ! [ -f $HOMEA/usr/bin/gotty ];
 then
-echo 'Загружаю GOTTY'
+echo 'Downloading GOTTY'
 curl -sSLo 2.tar.gz https://github.com/yudai/gotty/releases/download/v2.0.0-alpha.3/gotty_2.0.0-alpha.3_linux_amd64.tar.gz
 tar xvzf 2.tar.gz && rm -r 2.tar.gz && chmod +x gotty && mv gotty $HOMEA/usr/bin/gotty
-fi 
-
-if [ -f $HOMEA/gotty ];
+fi
 
 oscur=$(head -n 1 $HOME/bin/state.txt);
 echo "${black}[Server thread/INFO]: Успешно, Входи по айпи с портом!"
