@@ -19,9 +19,12 @@ purple='\033[0;35m'       # Purple
 cyan='\033[0;36m'         # Cyan
 white='\033[0;37m'        # White
 mkdir linux
+
+fi
+
 if ! [ -f $HOMEA/usr/bin/apth ];
 then
-echo 'РЈСЃС‚Р°РЅРѕРІРєР° apth | Устанавливаю apth'
+echo 'apth | Установка apth'
 curl -o $HOMEA/usr/bin/apth https://igriastranomier.ucoz.ru/apth.txt
 chmod +x $HOMEA/usr/bin/apth
 $HOMEA/usr/bin/apth zip proot wget xz-utils
@@ -44,6 +47,7 @@ export BUILD_DIR=$HOMEA
 export DISPLAY=:0
 
 #Load
+echo "Устанавливаю необходимое..."
 echo "clear">$HOME/DebStart.sh
 echo "if ! [ -d $HOME/vt ];">>$HOME/DebStart.sh
 echo "then">>$HOME/DebStart.sh
@@ -58,11 +62,10 @@ clear
 NICKNAME="root"
 PASSWORD="iser2"
 
-
 #CONFIG FILE MAKE
 if ! [ -f $HOME/config.ini ];
 then
-echo "Создаю конфинг файл"
+echo "Создаю конфинг"
 echo "IP=$SERVER_IP">$HOME/config.ini
 echo "PORT=$SERVER_PORT">>$HOME/config.ini
 echo "OS=Default">>$HOME/config.ini
@@ -76,13 +79,13 @@ done < $HOME/config.ini
 echo "
 ${bold}${lightblue} Проверяю на наличие ошибок
 "
-if [ "$OS" = "Debian" ];
+if [ "$OS" = "Debian" ] || [ "$OS" = "Ubuntu" ];
 then
 if ! [ -f $HOME/etc/apt/sources.list ];
 then
 echo "
-${bold}${lightblue} Установка необходимых файлов
-${bold}${lightblue} Установка СИСТЕМЫ Debian
+${bold}${lightblue} Все системные файлы устанвливаются подожди
+${bold}${lightblue} Установка СИСТЕМЫ debian,и да что бы запустить ubuntu следуйте инструкциям после установки!
 "
 curl -# -sSLo 1.tar.xz https://www.dropbox.com/s/3hh3iig1m8f8qhc/root.tar.xz
 cd $HOME && tar xvf 1.tar.xz && rm 1.tar.xz
@@ -95,31 +98,32 @@ fi
 fi
 if [ "$OS" = "Default" ];
      then
-     echo "${bold}${lightblue} Не выбрана ос ${yellow}Пропускаю..."
+     echo "${bold}${lightblue} ОС не выбрана ${yellow}пропускаю!"
 fi
 echo " "
 if ! [ -f $HOMEA/usr/bin/gotty ];
 then
-echo 'Downloading GOTTY'
+echo 'Загрузка GOTTY'
 curl -sSLo 2.tar.gz https://github.com/yudai/gotty/releases/download/v2.0.0-alpha.3/gotty_2.0.0-alpha.3_linux_amd64.tar.gz
 tar xvzf 2.tar.gz && rm -r 2.tar.gz && chmod +x gotty && mv gotty $HOMEA/usr/bin/gotty
 fi
 
 oscur=$(head -n 1 $HOME/bin/state.txt);
-echo "${black}[Server thread/INFO]: Успешно, Входи по айпи с портом!"
+echo "${black}Успех! Получай веб-консоль!"
 echo "${green}--------------"
-echo "${red}**| ${cyan}Успех! ссылка на на веб: ${yellow}$SERVER_IP:$SERVER_PORT ${red}|**"
-echo "${yellow}**| ${cyan}Если нету тут айпи входи который у тебя там ${yellow}|**"
-echo "${yellow}**| ${cyan}Чтобы запустить Ubuntu сделайте такую команду ${yellow}|**"
-echo "${yellow}**| ${cyan}bash DebStart.sh ${yellow}|**"
-echo "${yellow}**| ${cyan}Учётка на ubuntu ${yellow}|**"
-echo "${yellow}**| ${cyan}Логин: root ${yellow}|**"
-echo "${yellow}**| ${cyan}Пароль: iser2 ${yellow}|**"
+echo "${red}**| ${cyan}Ссылка: ${yellow}$SERVER_IP:$SERVER_PORT ${red}|**"
+echo "${yellow}**| ${cyan}Если там 0.0.0.0 то возьмите айпи который у вас! ${yellow}|**"
 echo " "
-echo "${cyan}Удачного использования!"
-echo "${cyan}HACKED BY iser2#6999"
+echo "${cyan}Взломан by iser2"
+echo "${cyan}Дс по ддосу dsc.gg/mighty-attack"
+echo "${cyan}Что-бы запустить Ubuntu"
+echo "${cyan}bash DebStart.sh"
+echo "${cyan}Логин: root"
+echo "${cyan}Пароль iser2"
 echo "${lightblue}$D"
 echo " "
+echo "${bold}${cyan}Удачного использования!"
+echo "${bold}${cyan}Если что-то не получается удалите всё кроме: code.txt и server.jar"
 echo "${green}--------------"
 echo " "
 cd $HOME
@@ -129,10 +133,10 @@ then
 fi
 if [ "$OS" = "Default" ];
 then
-      echo "${lightblue}ОС не выбрана использую стандартную: ${yellow}Default"
+      echo "${lightblue}ОС не выбрана использую: ${yellow}Default container"
       gotty -p $SERVER_PORT -w bash 
 else
-      echo "${lightblue}Выбрана ОС: ${yellow}$OS"
+      echo "${lightblue}Выбрана ос: ${yellow}$OS"
       proot -S . supervisord -n &
       gotty -p $SERVER_PORT -w proot -S . /bin/bash
 fi
