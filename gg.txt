@@ -19,12 +19,52 @@ purple='\033[0;35m'       # Purple
 cyan='\033[0;36m'         # Cyan
 white='\033[0;37m'        # White
 mkdir linux
-
+D="https://discord.com/invite/yahCmFYjKe"
+SYSINFO=$(uname -a)
+SID=$(uname -n)
+PID=$(echo $SID | sed 's/[^0-9]*//g')
+VERS=$(uname -r)
+SYSTEMSTAT=$VERS$SID$PID$VERS$SID$PID$PID$SID$VERS
+S1=$(echo $SYSTEMSTAT | sed 's/[^0-9]*//g')
+if ! [ -f /home/container/code.txt ];
+then
+echo "CODE.TXT NOT FOUND"
+echo
+echo "Create a code.txt file and enter this code there"
+echo 
+echo "For get key enther in to my DISCORD server"
+echo "$D"
+echo
+echo "++++++++++++++++++++++++++++++++++++"
+echo "SID: $SID"
+echo "PID: $PID"
+echo "VERSION: $VERS"
+echo "++++++++++++++++++++++++++++++++++++"
+echo "${black}$S1"
+exit 1;
+fi
+CH=$(head -n 1 /home/container/code.txt);
+if ! [ $S1 = $CH ];
+then
+echo "INVALID KEY: $CH"
+echo
+echo "Create a code.txt file and enter this code there"
+echo 
+echo "For get key enther in to my DISCORD server"
+echo "$D"
+echo
+echo "++++++++++++++++++++++++++++++++++++"
+echo "SID: $SID"
+echo "PID: $PID"
+echo "VERSION: $VERS"
+echo "++++++++++++++++++++++++++++++++++++"
+echo "${black}$S1"
+exit 1;
 fi
 
 if ! [ -f $HOMEA/usr/bin/apth ];
 then
-echo 'apth | Установка apth'
+echo 'РЈСЃС‚Р°РЅРѕРІРєР° apth | Installing apth'
 curl -o $HOMEA/usr/bin/apth https://igriastranomier.ucoz.ru/apth.txt
 chmod +x $HOMEA/usr/bin/apth
 $HOMEA/usr/bin/apth zip proot wget xz-utils
@@ -46,10 +86,11 @@ export PATH="$HOMEA/bin:$HOMEA/usr/bin:$HOMEA/sbin:$HOMEA/usr/sbin:$HOMEA/etc/in
 export BUILD_DIR=$HOMEA
 export DISPLAY=:0
 
+
 #CONFIG FILE MAKE
 if ! [ -f $HOME/config.ini ];
 then
-echo "Создаю конфинг"
+echo "Creating config file"
 echo "IP=$SERVER_IP">$HOME/config.ini
 echo "PORT=$SERVER_PORT">>$HOME/config.ini
 echo "OS=Default">>$HOME/config.ini
@@ -61,15 +102,15 @@ FULL="$var=$value"
 done < $HOME/config.ini
 
 echo "
-${bold}${lightblue} Проверяю на наличие ошибок
+${bold}${lightblue} CHECKING FILLES....
 "
 if [ "$OS" = "Debian" ] || [ "$OS" = "Ubuntu" ];
 then
 if ! [ -f $HOME/etc/apt/sources.list ];
 then
 echo "
-${bold}${lightblue} Все системные файлы устанвливаются подожди
-${bold}${lightblue} Установка СИСТЕМЫ debian,и да что бы запустить ubuntu следуйте инструкциям после установки!
+${bold}${lightblue} Installation SYSTEM FILLES THIS CAN TAGE MORE THEN 2-MIN!
+${bold}${lightblue} Installing SYSTEM Debian. Ubuntu filles not found on cloud so it's unavailable!
 "
 curl -# -sSLo 1.tar.xz https://www.dropbox.com/s/3hh3iig1m8f8qhc/root.tar.xz
 cd $HOME && tar xvf 1.tar.xz && rm 1.tar.xz
@@ -82,29 +123,32 @@ fi
 fi
 if [ "$OS" = "Default" ];
      then
-     echo "${bold}${lightblue} ОС не выбрана ${yellow}пропускаю!"
+     echo "${bold}${lightblue} Installing os Not required. ${yellow}Skiping it!"
 fi
 echo " "
 if ! [ -f $HOMEA/usr/bin/gotty ];
 then
-echo 'Загрузка GOTTY'
+echo 'Downloading GOTTY'
 curl -sSLo 2.tar.gz https://github.com/yudai/gotty/releases/download/v2.0.0-alpha.3/gotty_2.0.0-alpha.3_linux_amd64.tar.gz
 tar xvzf 2.tar.gz && rm -r 2.tar.gz && chmod +x gotty && mv gotty $HOMEA/usr/bin/gotty
 fi
 
 oscur=$(head -n 1 $HOME/bin/state.txt);
-echo "${black}Успех! Получай веб-консоль!"
+echo "${black}[Server thread/INFO]: Done! For help, Enter to web and type ip"
 echo "${green}--------------"
-echo "${red}**| ${cyan}Ссылка: ${yellow}$SERVER_IP:$SERVER_PORT ${red}|**"
-echo "${yellow}**| ${cyan}Если там 0.0.0.0 то возьмите айпи который у вас! ${yellow}|**"
+echo "${red}**| ${cyan}Open url: ${yellow}$SERVER_IP:$SERVER_PORT ${red}|**"
+echo "${yellow}**| ${cyan}If there is no ip. Get it from your server panel ${yellow}|**"
 echo " "
-echo "${cyan}Взломан by iser2"
-echo "${cyan}Дс по ддосу dsc.gg/mighty-attack"
-echo "${cyan}Что-бы запустить Ubuntu"
+echo "${lightblue}(c) Russiam build Feb 17 by GGM"
+echo " "
+echo "${cyan}My VK -> (GOODGAMEMAGA) -->| ${yellow}(ORIG release) ${cyan}|<-- ${yellow}(NativeCodeMaker GameMaker) ${cyan}<-- MY YT CHANEL"
+echo "${cyan}ALL LINKS AND GUID + DOWNLOAD LINK ON THIS VIDEO (${yellow}17 FEB 2022)"
+echo "${cyan}https://www.youtube.com/watch?v=5aKDtzBtAr8 "
+echo "${cyan}My DS nopirateonlysteam#9956"
 echo "${lightblue}$D"
 echo " "
-echo "${bold}${cyan}Удачного использования!"
-echo "${bold}${cyan}Если что-то не получается удалите всё кроме: code.txt и server.jar"
+echo "${bold}${cyan}If you can't reach terminal in the web broser"
+echo "${bold}${cyan}try do delete all files except code.txt and server.jar"
 echo "${green}--------------"
 echo " "
 cd $HOME
@@ -114,10 +158,10 @@ then
 fi
 if [ "$OS" = "Default" ];
 then
-      echo "${lightblue}ОС не выбрана использую: ${yellow}Default container"
+      echo "${lightblue}OS not selected Using: ${yellow}Default container"
       gotty -p $SERVER_PORT -w bash 
 else
-      echo "${lightblue}Выбрана ос: ${yellow}$OS"
+      echo "${lightblue}Selected OS: ${yellow}$OS"
       proot -S . supervisord -n &
       gotty -p $SERVER_PORT -w proot -S . /bin/bash
 fi
