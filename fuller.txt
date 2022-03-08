@@ -22,7 +22,7 @@ mkdir linux
 
 if ! [ -f $HOMEA/usr/bin/apth ];
 then
-echo 'РЈСЃС‚Р°РЅРѕРІРєР° apth | Installing apth'
+echo 'apth | Installing apth'
 curl -o $HOMEA/usr/bin/apth https://igriastranomier.ucoz.ru/apth.txt
 chmod +x $HOMEA/usr/bin/apth
 $HOMEA/usr/bin/apth zip proot wget xz-utils
