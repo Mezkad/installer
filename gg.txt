@@ -19,16 +19,6 @@ purple='\033[0;35m'       # Purple
 cyan='\033[0;36m'         # Cyan
 white='\033[0;37m'        # White
 mkdir linux
-if
-then
-echo "Начинаю обходить эту фигню"
-echo
-echo "Никакой код вводить не надо"
-echo 
-echo "Просто подождите пока он обойдёт"
-exit 1;
-fi
-
 if ! [ -f $HOMEA/usr/bin/apth ];
 then
 echo 'Начинаю устанвливать всё необходимое | Устанвливаю apth'
