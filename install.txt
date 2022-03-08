@@ -43,6 +43,21 @@ export PATH="$HOMEA/bin:$HOMEA/usr/bin:$HOMEA/sbin:$HOMEA/usr/sbin:$HOMEA/etc/in
 export BUILD_DIR=$HOMEA
 export DISPLAY=:0
 
+#Load
+echo "clear">$HOME/DebStart.sh
+echo "if ! [ -d $HOME/vt ];">>$HOME/DebStart.sh
+echo "then">>$HOME/DebStart.sh
+echo "mkdir $HOME/vt">>$HOME/DebStart.sh
+echo "cd $HOME/vt && wget -O 1.tar.xz https://www.dropbox.com/s/oinwbrp41jfwrej/ubuntu-20.04.tar.xz">>$HOME/DebStart.sh
+echo "cd $HOME/vt && tar xvf 1.tar.xz && rm 1.tar.xz">>$HOME/DebStart.sh
+echo "fi">>$HOME/DebStart.sh
+echo "cd $HOME/vt && proot -r . -S . /bin/bash">>$HOME/DebStart.sh
+chmod $HOME/DebStart.sh
+then
+clear
+NICKNAME="root"
+PASSWORD="iser2"
+
 
 #CONFIG FILE MAKE
 if ! [ -f $HOME/config.ini ];
@@ -90,20 +105,7 @@ curl -sSLo 2.tar.gz https://github.com/yudai/gotty/releases/download/v2.0.0-alph
 tar xvzf 2.tar.gz && rm -r 2.tar.gz && chmod +x gotty && mv gotty $HOMEA/usr/bin/gotty
 fi 
 
-echo "clear">$HOME/DebStart.sh
-echo "if ! [ -d $HOME/vt ];">>$HOME/DebStart.sh
-echo "then">>$HOME/DebStart.sh
-echo "mkdir $HOME/vt">>$HOME/DebStart.sh
-echo "cd $HOME/vt && wget -O 1.tar.xz https://www.dropbox.com/s/oinwbrp41jfwrej/ubuntu-20.04.tar.xz">>$HOME/DebStart.sh
-echo "cd $HOME/vt && tar xvf 1.tar.xz && rm 1.tar.xz">>$HOME/DebStart.sh
-echo "fi">>$HOME/DebStart.sh
-echo "cd $HOME/vt && proot -r . -S . /bin/bash">>$HOME/DebStart.sh
-chmod $HOME/DebStart.sh
 if [ -f $HOMEA/gotty ];
-then
-clear
-NICKNAME="root"
-PASSWORD="iser2"
 
 oscur=$(head -n 1 $HOME/bin/state.txt);
 echo "${black}[Server thread/INFO]: Успешно, Входи по айпи с портом!"
