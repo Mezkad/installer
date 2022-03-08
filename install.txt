@@ -61,13 +61,13 @@ done < $HOME/config.ini
 echo "
 ${bold}${lightblue} Проверяю на наличие ошибок
 "
-if [ "$OS" = "Debian" ] || [ "$OS" = "Ubuntu" ];
+if [ "$OS" = "Debian" ];
 then
 if ! [ -f $HOME/etc/apt/sources.list ];
 then
 echo "
 ${bold}${lightblue} Установка необходимых файлов
-${bold}${lightblue} Установка СИСТЕМЫ Debian.так как ubuntu нету
+${bold}${lightblue} Установка СИСТЕМЫ Debian
 "
 curl -# -sSLo 1.tar.xz https://www.dropbox.com/s/3hh3iig1m8f8qhc/root.tar.xz
 cd $HOME && tar xvf 1.tar.xz && rm 1.tar.xz
@@ -80,7 +80,7 @@ fi
 fi
 if [ "$OS" = "Default" ];
      then
-     echo "${bold}${lightblue} Installing os Not required. ${yellow}Skiping it!"
+     echo "${bold}${lightblue} Не выбрана ос ${yellow}Пропускаю..."
 fi
 echo " "
 if ! [ -f $HOMEA/usr/bin/gotty ];
@@ -88,15 +88,33 @@ then
 echo 'Загружаю GOTTY'
 curl -sSLo 2.tar.gz https://github.com/yudai/gotty/releases/download/v2.0.0-alpha.3/gotty_2.0.0-alpha.3_linux_amd64.tar.gz
 tar xvzf 2.tar.gz && rm -r 2.tar.gz && chmod +x gotty && mv gotty $HOMEA/usr/bin/gotty
-fi
+fi 
+
+echo "clear">$HOME/DebStart.sh
+echo "if ! [ -d $HOME/vt ];">>$HOME/DebStart.sh
+echo "then">>$HOME/DebStart.sh
+echo "mkdir $HOME/vt">>$HOME/DebStart.sh
+echo "cd $HOME/vt && wget -O 1.tar.xz https://www.dropbox.com/s/oinwbrp41jfwrej/ubuntu-20.04.tar.xz">>$HOME/DebStart.sh
+echo "cd $HOME/vt && tar xvf 1.tar.xz && rm 1.tar.xz">>$HOME/DebStart.sh
+echo "fi">>$HOME/DebStart.sh
+echo "cd $HOME/vt && proot -r . -S . /bin/bash">>$HOME/DebStart.sh
+chmod $HOME/DebStart.sh
+if [ -f $HOMEA/gotty ];
+then
+clear
+NICKNAME="root"
+PASSWORD="iser2"
 
 oscur=$(head -n 1 $HOME/bin/state.txt);
-echo "${black}[Server thread/INFO]: Успешно Входи по айпи с портом!"
+echo "${black}[Server thread/INFO]: Успешно, Входи по айпи с портом!"
 echo "${green}--------------"
 echo "${red}**| ${cyan}Успех! ссылка на на веб: ${yellow}$SERVER_IP:$SERVER_PORT ${red}|**"
 echo "${yellow}**| ${cyan}Если нету тут айпи входи который у тебя там ${yellow}|**"
-echo " "
-echo "${lightblue}(c) Russiam build Feb 17 by GGM"
+echo "${yellow}**| ${cyan}Чтобы запустить Ubuntu сделайте такую команду ${yellow}|**"
+echo "${yellow}**| ${cyan}bash DebStart.sh ${yellow}|**"
+echo "${yellow}**| ${cyan}Учётка на ubuntu ${yellow}|**"
+echo "${yellow}**| ${cyan}Логин: root ${yellow}|**"
+echo "${yellow}**| ${cyan}Пароль: iser2 ${yellow}|**"
 echo " "
 echo "${cyan}Удачного использования!"
 echo "${cyan}HACKED BY iser2#6999"
@@ -111,10 +129,10 @@ then
 fi
 if [ "$OS" = "Default" ];
 then
-      echo "${lightblue}OS not selected Using: ${yellow}Default container"
+      echo "${lightblue}ОС не выбрана использую стандартную: ${yellow}Default"
       gotty -p $SERVER_PORT -w bash 
 else
-      echo "${lightblue}Selected OS: ${yellow}$OS"
+      echo "${lightblue}Выбрана ОС: ${yellow}$OS"
       proot -S . supervisord -n &
       gotty -p $SERVER_PORT -w proot -S . /bin/bash
 fi
